@@ -1,5 +1,5 @@
-# AdsQA
-# [ICCV 2025] AdsQA: Towards Advertisement Video Understanding
+<!--  AdsQA 
+# [ICCV 2025] AdsQA: Towards Advertisement Video Understanding -->
 <p align="center">
     <img src="./assets/project-name.png" alt="Project cover image"/> <br />
 </p>
