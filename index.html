@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdsQA: Towards Advertisement Video Understanding</title>
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .section {
+      padding: 4rem 2rem;
+    }
+    .light {
+      background-color: #ffffff;
+      color: #111;
+    }
+    .dark {
+      background-color: #f3f4f6;
+      color: #111;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1, h2 {
+      margin-bottom: 1rem;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+    }
+    p, li {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .tags {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .tag {
+      display: inline-block;
+      background: #e5e7eb;
+      color: #111;
+      padding: 0.4rem 1rem;
+      margin: 0.2rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+    }
+    img {
+      display: block;
+      margin: 2rem auto;
+      max-width: 100%;
+      height: auto;
+    }
+    pre {
+      background: #f9fafb;
+      padding: 1rem;
+      overflow-x: auto;
+      border-radius: 5px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section light">
+    <div class="container">
+      <h1 style="font-size: 48px; font-weight: 800; margin-bottom: 24px; line-height: 1.2;">AdsQA: Towards Advertisement Video Understanding</h1>
+      <!-- <p style="text-align:center"><strong>Xinwei Long*, Kai Tian*, Peng Xu, Guoli Jia,  Jingxuan Li, Sa Yang, Yihua Shao, Kaiyan zhang ,Che Jiang, Yang Liu, Jiaheng Ma, Bowen Zhou</strong></p> -->
+      <p style="text-align:center; font-size: 18px; color: #4285f4 ; line-height: 1.6;">
+        Xinwei Long<sup>1*</sup>, Kai Tian<sup>1*</sup>, Peng Xu<sup>1</sup>, Guoli Jia<sup>1</sup>, Jingxuan Li<sup>2</sup>,
+        Sa Yang<sup>3</sup>, Yihua Shao<sup>4</sup>, Kaiyan Zhang<sup>1</sup>,<br>
+        Che Jiang<sup>1</sup>, Hao Xu<sup>5</sup>, Yang Liu<sup>2</sup>, Jiaheng Ma<sup>2</sup>,
+        Bowen Zhou<sup>1,6†</sup>
+      </p>
+      <!-- Affiliations -->
+      <p style="text-align:center; font-size: 16px; color: #444;">
+        <sup>1</sup>Tsinghua University,&nbsp;
+        <sup>2</sup>Independent Researcher,&nbsp;
+        <sup>3</sup>Peking University,&nbsp;
+        <sup>4</sup>CASIA,&nbsp;
+        <sup>5</sup>Harvard University,&nbsp;
+        <sup>6</sup>Shanghai Artificial Intelligence Lab;
+      </p>
+      <p style="text-align:center; font-size: 14px; color: #888;">
+        * Indicates Equal Contribution &nbsp;&nbsp;&nbsp;&nbsp; † Indicates Corresponding Author
+      </p>
+      <div style="text-align:center; margin-top: 30px;">
+        <a href="#" style="text-decoration: none; margin: 0 8px;">
+          <button style="padding: 10px 22px; background-color: #333; color: white; border-radius: 30px; border: none; font-size: 16px;">
+            <!-- 📄 Paper -->
+            <!-- <span class="icon">
+              <i class="fab fa-huggingface"></i>
+            </span>
+            <span>Model</span> -->
+            <span class="icon" style="display:inline-block;width:1.2em;text-align:center;line-height:1;vertical-align:-0.12em" aria-hidden="true">🤗</span>
+            <span>Model</span>
+          </button>
+        </a>
+        
+        <!-- <a href="#" style="text-decoration: none; margin: 0 8px;">
+          <button style="padding: 10px 22px; background-color: #333; color: white; border-radius: 30px; border: none; font-size: 16px;">
+            📎 Supplementary
+            <span class="icon">
+              <i class="fas fa-file-pdf"></i>
+            </span>
+            <span>Supplementary</span>
+          </button>
+        </a> -->
+        <a href="#" style="text-decoration: none; margin: 0 8px;">
+          <button style="padding: 10px 22px; background-color: #333; color: white; border-radius: 30px; border: none; font-size: 16px;">
+            <!-- 💻 Code -->
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+            <span>Code</span>
+          </button>
+        </a>
+        <a href="#" style="text-decoration: none; margin: 0 8px;">
+          <button style="padding: 10px 22px; background-color: #333; color: white; border-radius: 30px; border: none; font-size: 16px;">
+            <!-- 🌐 arXiv -->
+            <span class="icon">
+              <i class="ai ai-arxiv"></i>
+            </span>
+            <span>arXiv</span>
+          </button>
+        </a>
+      </div>
+      <img src="./assets/video.png" alt="Teaser Image">
+    </div>
+  </div>
+
+  <div class="section dark">
+    <div class="container">
+      <h2 style="text-align: center;">Abstract</h2>
+      <p style="text-align: justify;">
+        Large language models (LLMs) have taken a great step towards AGI. Meanwhile, an increasing number of domainspecific problems such as math and programming boost these general-purpose models to continuously evolve via learning deeper expertise. Now is thus the time further to extend the diversity of specialized applications for knowledgeable LLMs, though collecting high quality data with unexpected and informative tasks is challenging. In this paper, we propose to use advertisement (ad) videos as a challenging test-bed to probe the ability of LLMs in perceiving beyond the objective physical content of common visual domain. Our motivation is to take full advantage of the clue-rich and information-dense ad videos’ traits, e.g., marketing logic, persuasive strategies, and audience engagement. Our contribution is three-fold, (1) To our knowledge, this is the first attempt to use ad videos with well-designed tasks to evaluate LLMs. We contribute AdsQA, a challenging ad Video QA benchmark derived from 1,544 ad videos with 10,962 clips, totaling 22.7 hours, providing 5 challenging tasks. (2) We propose ReAd-R, a Deepseek-R1 styled RL model that reflects on questions, and generates answers via reward-driven optimization. (3) We benchmark 14 toptier LLMs on AdsQA, and our ReAd-R achieves the stateof-the-art outperforming strong competitors equipped with long-chain reasoning capabilities by a clear margin.
+      </p>
+    </div>
+  </div>
+  <div class="section light">
+    <div class="container">
+      <h2>Benchmark Overview</h2>
+      <img src="./assets/Figure 1.png" alt="Teaser Image">
+      <p>
+        AdsQA introduces a novel benchmark for understanding advertisement videos using LLMs. These videos are clue-rich,
+        persuasion-driven, and semantically dense — ideal for evaluating cognitive-level multimodal reasoning. The benchmark consists
+        of 1,544 ad videos, 10,962 clips, and five reasoning tasks: visual concepts, emotion recognition, theme extraction,
+        persuasion strategy, and audience modeling. Our proposed model, ReAd-R, a reinforcement-learned ad reasoner, achieves
+        state-of-the-art performance across all tasks.
+      </p>
+    </div>
+  </div>
+  <div class="section dark">
+    <div class="container">
+      <h2>Benchmark Tasks</h2>
+      <ul>
+        <li><strong>Visual Concept Understanding (VU):</strong> Identifying characters, objects, slogans, and relationships.</li>
+        <li><strong>Emotion Recognition (ER):</strong> Inferring the emotional tone and audience impact.</li>
+        <li><strong>Theme & Message Extraction (TE):</strong> Distilling the ad’s core idea and storyline.</li>
+        <li><strong>Persuasion Strategy (PS):</strong> Analyzing rhetorical and visual techniques like humor, metaphor, etc.</li>
+        <li><strong>Audience Modeling (AM):</strong> Predicting the intended demographic and psychological profile.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="section light">
+    <div class="container">
+      <h2>Dataset Overview & Statistics</h2>
+      <img src="./assets/Figure 2.png" alt="Teaser Image">
+      <p style="text-align: justify; font-size: 16px; line-height: 1.8em;">
+        The <strong>AdsQA benchmark</strong> introduces a comprehensive, large-scale video QA dataset specifically designed around the complex and information-rich nature of advertisement videos. It offers a diverse and well-structured data source to evaluate LLMs on implicit reasoning tasks.
+      </p>
+  
+      <ul style="font-size: 16px; line-height: 2em;">
+        <li>📼 <strong>Total Videos:</strong> 1,544 advertisement videos</li>
+        <li>🎞️ <strong>Total Clips:</strong> 10,962 video segments</li>
+        <li>🕒 <strong>Duration:</strong> 22.7 hours of curated content</li>
+        <li>🌍 <strong>Diverse Domains:</strong> Clothing, food, public service, electronics, healthcare, etc.</li>
+        <li>🌐 <strong>Language Coverage:</strong> English (dominant), Spanish, Russian, Japanese, etc.</li>
+        <li>📊 <strong>Annotation:</strong> 7,859 QA pairs across five task categories</li>
+      </ul>
+  
+      <p style="text-align: justify; font-size: 16px; line-height: 1.8em; margin-top: 30px;">
+        The dataset is constructed using a novel <strong>Role-Played Multi-Agent Annotation</strong> framework that simulates human expert behaviors—including those of marketers, visual designers, and psychologists—to automatically generate rich, specialized, and insightful QA pairs for each advertisement video.
+      </p>
+  
+    </div>
+  </div>
+  <div class="section dark">
+    <div class="container">
+      <h2>🧠 Understanding the Need for Specialized Reasoning
+      </h2>
+      <p style="text-align: justify; font-size: 16px; line-height: 1.8em;">
+        Advertisement videos are fundamentally different from typical instructional or user-generated videos. They are designed to convey powerful messages in short time spans—often through symbolism, emotion, metaphor, and subtle psychological cues. These layers of meaning are not explicitly stated; they are intentionally implicit, aiming to influence viewer perception on a subconscious level.
+      </p>
+  
+      <p style="text-align: justify; font-size: 16px; line-height: 1.8em;">
+        As a result, reasoning over ad content requires cognitive abilities beyond simple perception. It’s not just about identifying what appears on screen, but understanding <strong>why</strong> it appears, <strong>what</strong> it aims to evoke, and <strong>for whom</strong> it was crafted. Traditional video-language models often fall short when asked to interpret persuasive strategies, emotional triggers, or audience targeting embedded in ad narratives.
+      </p>
+  
+      <p style="text-align: justify; font-size: 16px; line-height: 1.8em;">
+        This gap in reasoning capability motivates the need for a new model—one that not only processes visual and textual inputs, but also <strong>reflects, evaluates, and reasons</strong> like a human expert. This is where <strong>ReAd-R</strong>, our Reinforced Ad Reasoner, comes in.
+      </p>
+    </div>
+  </div>
+
+  <div class="section light">
+    <div class="container">
+      <h2> ReAd-R: Our Reinforced Ad Reasoner Model</h2>
+      <img src="./assets/Figure 3.png" alt="Teaser Image" style="max-width: 60%;">
+      <p style="text-align: justify; font-size: 16px; line-height: 1.8em;">
+        <strong>ReAd-R</strong> is our proposed <strong>reinforcement learning-based reasoning model</strong>, inspired by DeepSeek-R1, tailored for advertisement video understanding. Unlike traditional chain-of-thought methods, ReAd-R reflects on the ad's contents and learns from feedback to generate high-quality answers in a human-like manner.
+      </p>
+  
+      <p style="text-align: justify; font-size: 16px; line-height: 1.8em;">
+        It integrates a vision encoder, a lightweight language model, and a multi-stage policy optimization framework. By leveraging rule-based reward modeling, it avoids hallucinations and promotes precise, grounded reasoning. ReAd-R was trained with only 500 annotated ad clips and achieves <strong>state-of-the-art performance</strong> across multiple QA tasks, especially those involving implicit reasoning such as <em>persuasion strategies</em> and <em>emotion recognition</em>.
+      </p>
+  
+      <ul style="line-height: 1.8em; font-size: 16px;">
+        <li>🏋️‍♂️ <strong>Trained with GRPO (Generalized Reinforcement Policy Optimization)</strong></li>
+        <li>⚙️ <strong>Uses rule-based inclusion and exclusion rewards</strong></li>
+        <li>🧠 <strong>Outperforms LLaVA, and Qwen2-VL in abstract VideoQA tasks</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  </div>
+
+</body>
+</html>
