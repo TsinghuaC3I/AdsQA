@@ -83,10 +83,13 @@ ReAd-R simulates **human-like heuristic reasoning** via reinforcement learning (
 
 
 
-## 🛠️ Get Started (Coming Soon)
+## 🏋️ Training (ReAd-R via EasyR1)
 
-We will release:
-- 🧾 Codebase for AdsQA annotation and evaluation.
-- 🤖 Checkpoints of ReAd-R and evaluation scripts.
-- 🧪 Toolkit for benchmarking your own models on AdsQA.
+We use the **[EasyR1](https://github.com/hiyouga/EasyR1)** framework for reinforcement learning (RL) training.
 
+```bash
+# From the project root
+cd code/train/EasyR1
+pip install -e .
+bash examples/adsqa.sh
+```
