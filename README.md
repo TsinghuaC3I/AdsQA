@@ -93,3 +93,8 @@ cd code/train/EasyR1
 pip install -e .
 bash examples/adsqa.sh
 ```
+
+## 🤖 Model
+
+- **Qwen2.5-7B-VL-ReAd-R** — available on **Hugging Face**:  
+  https://huggingface.co/TsinghuaC3I/Qwen2.5-7B-VL-ReAd-R
