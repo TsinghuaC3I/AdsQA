@@ -89,7 +89,7 @@ We use the **[EasyR1](https://github.com/hiyouga/EasyR1)** framework for reinfor
 
 ```bash
 # From the project root
-cd code/train/EasyR1
+cd ReadR
 pip install -e .
 bash examples/adsqa.sh
 ```
