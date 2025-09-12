@@ -1,24 +1,34 @@
-<!--  AdsQA 
-# [ICCV 2025] AdsQA: Towards Advertisement Video Understanding -->
 <p align="center">
     <img src="./assets/project-name.png" alt="Project cover image"/> <br />
 </p>
 
 
-<div align="center">
-<!-- 🔍 <b>Paper</b>: <i><a href="#">Coming Soon</a></i> | 
-  📊 <b>Benchmark</b>: <i>Coming Soon</i> |
-  🤖 <b>Model</b>: <i>Coming Soon</i> 
--->   
-    <p align="center">
-        <i>Keywords: Advertisement Videos, VideoQA, Multimodal Reasoning, GRPO</i>
-    </p>
-</div>
+*Keyworks: Advertisement Videos, VideoQA, Multimodal Reasoning, GRPO*
 
-----
-<img align="center" src="./assets/video.png" >
+---
 
-<img align="center" src="./assets/Figure 1.png" >
+  Xinwei Long<sup>1*</sup>, Kai Tian<sup>1*</sup>, Peng Xu<sup>1</sup>, Guoli Jia<sup>1</sup>, Jingxuan Li<sup>2</sup>, Sa Yang<sup>3</sup>, Yihua Shao<sup>4</sup>, Kaiyan Zhang<sup>1</sup>,Che Jiang<sup>1</sup>, Hao Xu<sup>5</sup>, Yang Liu<sup>2</sup>, Jiaheng Ma<sup>2</sup>,
+  Bowen Zhou<sup>1,6†</sup>
+
+<sup>1</sup> Tsinghua University
+
+<sup>2</sup> Independent Researcher
+
+<sup>3</sup> Peking University
+
+<sup>4</sup> CASIA
+
+<sup>5</sup> Harvard University
+
+<sup>6</sup> Shanghai Artificial Intelligence Lab
+
+<sup>*</sup> Equal Contribution
+
+<sup>+</sup> corresponding authors
+
+<a href="https://arxiv.org/abs/2509.08621"><img src='https://img.shields.io/badge/arXiv-CDP-red' alt='Paper PDF'></a>	<a href='https://tsinghuac3i.github.io/AdsQA/'><img src='https://img.shields.io/badge/Project_Page-CDP-green' alt='Project Page'></a>
+
+---
 
 AdsQA is the **first large-scale benchmark** targeting advertisement video understanding through **LLMs**. Ad videos are rich, symbolic, emotionally charged, and ideal for evaluating cognitive-level reasoning beyond physical perception. 
 
@@ -27,74 +37,101 @@ AdsQA is the **first large-scale benchmark** targeting advertisement video under
 - **🚀 Our Model: ReAd-R** is a Reinforced Ad Reasoner trained using reward-based optimization, outperforming chain-of-thought and agent-based methods.
 - **🎯 5 Tasks**: Visual Concepts, Emotion, Themes, Persuasion, and Audience.
 
+<img align="center" src="./assets/Figure 1.png" >
 
 
-## 📐 Tasks Overview
-1. **Visual Concept Understanding (VU)** – Identify scenes, characters, symbols.
-2. **Emotion Recognition (ER)** – Infer emotional undertones and user impact.
-3. **Theme Extraction (TE)** – Distill core message and implied storytelling.
-4. **Persuasion Strategy (PS)** – Decode rhetorical and marketing tactics.
-5. **Audience Modeling (AM)** – Predict target demographics and profiles.
+- **Our Contribution.** 
 
-## 📊 Dataset Details
+  - The AdsQA benchmark introduces a comprehensive, large-scale video QA dataset specifically designed around the complex and information-rich nature of advertisement videos. It offers a diverse and well-structured data source to evaluate LLMs on implicit reasoning tasks.
 
-<p align="center">
-    <img src="./assets/Figure 2.png" width="800px"/> <br />
-    <em>Figure: Statistics of AdsQA benchmark (duration, domain, regions, etc).</em>
-</p>
-
-- 1,544 ad videos from 9 domains and 6 continents.
-- 7,859 open-ended QA pairs across 5 categories.
-- Clips sampled and described using multi-modal pipeline (frames, ASR, descriptions).
+  <p align="center">
+      <img src="./assets/Figure 2.png" width="800px"/> <br />
+      <em>Figure: Statistics of AdsQA benchmark (duration, domain, regions, etc).</em>
+  </p>
 
 
-## 🧠 ReAd-R: Reinforced Ad Reasoner
-
-<p align="center">
+  - ReAd-R. We propose ReAd-R—a DeepSeek-R1–styled RL reasoning model that reflects, answers, and learns from outcome-based rewards, avoiding costly step-wise/COT supervision. 
+  <p align="center">
     <img src="./assets/Figure 3.png" width="520px"/> <br />
     <em>Figure: Architecture of ReAd-R.</em>
 </p>
 
-ReAd-R simulates **human-like heuristic reasoning** via reinforcement learning (RL):
-
-- Reward-driven answer generation with no chain-of-thought templates.
-- Optimized with GRPO using self-generated reward signals.
-- Supports open-ended VideoQA and is base-model agnostic.
-
-## 🧪 Experiments
-
+- **Experiments** 
 <p align="center">
     <img src="./assets/table 1.png" width="800px"/> <br />
     <!-- <em>Figure: Sample predictions vs ground-truth across models.</em> -->
 </p>
 
-### Key Findings:
-- AdsQA is substantially harder than typical video QA benchmarks.
-- ReAd-R excels at **implicit logic** and **persuasive reasoning**.
-- Chain-of-thought and multi-agent search show limited generalization.
-
-## 🧪 Case Studies
-
-<p align="center">
-    <img src="./assets/Figure 4.png" width="520px"/> <br />
-    <!-- <em>Figure: Sample predictions vs ground-truth across models.</em> -->
-</p>
 
 
 
 
-## 🏋️ Training (ReAd-R via EasyR1)
 
+
+## Get Start
+
+
+
+#### 1. Requirements
 We use the **[EasyR1](https://github.com/hiyouga/EasyR1)** framework for reinforcement learning (RL) training.
 
-```bash
-# From the project root
+```
+conda create -n ReadR python=3.10
+conda activate ReadR
+
 cd ReadR
 pip install -e .
-bash examples/adsqa.sh
 ```
 
-## 🤖 Model
 
-- **Qwen2.5-7B-VL-ReAd-R** — available on **Hugging Face**:  
-  https://huggingface.co/TsinghuaC3I/Qwen2.5-7B-VL-ReAd-R
+
+#### 2. Datasets and Checkpoints.
+
+##### Datasets:
+video_clip.py converts a video into multiple images.
+```
+cd preprocess
+python video_clip.py
+```
+transform_parquet.py converts the dataset into Parquet format for training.
+```
+cd preprocess
+python transform_parquet.py
+```
+
+##### Checkpoint:
+
+The Official Released Models:
+
+|  Model  |                       LINK                       |
+| :-----: | :----------------------------------------------: |
+| Qwen-VL |   [Link](https://github.com/QwenLM/Qwen2.5-VL)   |
+
+Our fine-tuned version
+
+|         Model          |                     LINK                     |
+| :--------------------: | :--------------------------------------------------: |
+|  Qwen2.5-7B-VL-ReAd-R  | 🤗[Huggingface](https://huggingface.co/TsinghuaC3I/Qwen2.5-7B-VL-ReAd-R) |
+
+
+
+
+
+#### 3. Train
+
+~~~
+bash examples/adsqa.sh
+~~~
+
+
+
+## Contact
+
+If you have any questions, please feel free to contact me:
+
+longxw22@mails.tsinghua.edu.cn
+
+tk23@mails.tsinghua.edu.cn
+
+
+
