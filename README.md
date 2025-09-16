@@ -88,14 +88,13 @@ According to our Terms of Use, we cannot store or redistribute the original vide
  **Video Preprocessing** (Optional):
    - For our ReAd-R model, we preprocessed videos using `video_clip.py` and `preprocess/transform_parquet.py`
    - Preprocessed files are available for convenience at [this link](insert_preprocessed_link_here)
+   - Note: You may customize preprocessing (e.g., different sampling rates, resolutions) based on your specific requirements.
    - Example usage:
    ```bash
     cd preprocess
     python video_clip.py # 
     python transform_parquet.py # converts the dataset into Parquet format for training.
     ```
-   - Note: You may customize preprocessing (e.g., different sampling rates, resolutions) based on your specific requirements.
-
 
 #### 2. Question and Annotation Data Acquisition
 
