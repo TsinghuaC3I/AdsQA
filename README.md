@@ -101,10 +101,10 @@ According to our Terms of Use, we cannot store or redistribute the original vide
 Download the following annotation files from [this link](insert_annotation_link_here):
 
 - `train.json` - Training set questions and annotations
-- `testset_question.json` - Test set (only contains questions)
-- `testset_groundtruth.json` - Test set (questions, ground-truth answers, and their meta_info)
+- `testset_question.json` - Test set (ids, videos, and questions) for inference
+- `testset_groundtruth.json` - Test set (ids, questions, ground-truth answers, and their meta_info) for model-based auto evaluation.
 
-**Important Usage Note: The meta_info field is only for model-based auto evaluation purposes, DO NOT use meta_info as model input during the inference.**
+**!!!Important Usage Note: The meta_info field is only for model-based auto evaluation purposes; DO NOT use meta_info as model input during the inference.**
 
 ## Training, Inference, and Evaluation
 
