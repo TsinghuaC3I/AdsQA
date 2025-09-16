@@ -70,6 +70,46 @@ AdsQA is the **first large-scale benchmark** targeting advertisement video under
 
 ## Get Start
 
+### Data Acquisition
+
+#### 1. Video Data Acquisition
+
+According to our Terms of Use, we cannot store or redistribute the original video files. Instead, we provide open-source access to the video URLs. Please follow these steps to acquire the video data:
+
+1. **Download Video URLs**: 
+   - Obtain the complete list of video URLs from [this link](insert_url_link_here)
+   - The file contains URLs for both the training and test set videos
+
+2. **Download Videos**:
+   - Use our provided script `preprocess/download_videos.py` to download all videos
+   - Example usage:
+     ```bash
+     python preprocess/download_videos.py --url_file [path_to_url_file] --output_dir [video_output_directory]
+     ```
+
+3. **Video Preprocessing** (Optional):
+   - For our ReAd-R model, we preprocessed videos using `preprocess/transform_parquet.py`
+   - Preprocessed files are available for convenience at [this link](insert_preprocessed_link_here)
+   - Note: You may customize preprocessing (e.g., different sampling rates, resolutions) based on your specific requirements
+
+#### 2. Question and Annotation Data Acquisition
+
+Download the following annotation files from [this link](insert_annotation_link_here):
+
+- `train.json` - Training set questions and annotations
+- `testset_question.json` - Test set questions
+- `testset_groundtruth.json` - Test set ground truth annotations
+
+**Data Structure**:
+The JSON file may contain entries with the following fields:
+```json
+{
+  "question": "Question text provided in the dataset",
+  "answer": "Reference answer provided in the dataset",
+  "meta_info": "Video metadata information"
+}
+
+**Important Usage Note: The meta_info field is exclusively for model-based auto evaluation purposes, DO NOT use meta_info as model input during training or inference.**
 
 
 #### 1. Requirements
