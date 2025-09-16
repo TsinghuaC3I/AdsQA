@@ -83,7 +83,7 @@ According to our Terms of Use, we cannot store or redistribute the original vide
      python preprocess/download_videos.py --url_file [path_to_url_file] --output_dir [video_output_directory]
      ```
      
-   ** If any videos are inaccessible or the URLs have expired, please feel free to open an issue or contact us directly via email. **
+   **If any videos are inaccessible or the URLs have expired, please feel free to open an issue or contact us directly via email.**
    
 #### 2. Video Preprocessing** (Optional):
    - For our ReAd-R model, we preprocessed videos using `video_clip.py` and `preprocess/transform_parquet.py`. Preprocessed files are also available for convenience at [this link](insert_preprocessed_link_here).
