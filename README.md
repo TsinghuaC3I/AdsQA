@@ -104,7 +104,7 @@ Download the following annotation files from [this link](insert_annotation_link_
 - `testset_question.json` - Test set (ids, videos, and questions) for inference
 - `testset_groundtruth.json` - Test set (ids, questions, ground-truth answers, and their meta_info) for model-based auto evaluation.
 
-**!!!Important Usage Note: The meta_info field is only for model-based auto evaluation purposes; DO NOT use meta_info as model input during the inference.**
+**!!! Important Usage Note: The meta_info field is only for model-based auto evaluation purposes; DO NOT use meta_info as model input during the inference.**
 
 ## Training, Inference, and Evaluation
 
