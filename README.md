@@ -79,7 +79,8 @@ According to our Terms of Use, we cannot store or redistribute the original vide
 1. **Download Video URLs**: 
    - Obtain the complete list of video URLs from [this link](insert_url_link_here)
    - The file contains URLs for both the training and test set videos
-
+   - If any videos are inaccessible or the URLs have expired, please feel free to open an issue or contact us directly via email.
+     
 2. **Download Videos**:
    - Use our provided script `preprocess/download_videos.py` to download all videos
    - Example usage:
@@ -97,19 +98,10 @@ According to our Terms of Use, we cannot store or redistribute the original vide
 Download the following annotation files from [this link](insert_annotation_link_here):
 
 - `train.json` - Training set questions and annotations
-- `testset_question.json` - Test set questions
-- `testset_groundtruth.json` - Test set ground truth annotations
+- `testset_question.json` - Test set (only contains questions)
+- `testset_groundtruth.json` - Test set (questions, ground-truth answers, and their meta_info)
 
-**Data Structure**:
-The JSON file may contain entries with the following fields:
-```json
-{
-  "question": "Question text provided in the dataset",
-  "answer": "Reference answer provided in the dataset",
-  "meta_info": "Video metadata information"
-}
-
-**Important Usage Note: The meta_info field is exclusively for model-based auto evaluation purposes, DO NOT use meta_info as model input during training or inference.**
+**Important Usage Note: The meta_info field is only for model-based auto evaluation purposes, DO NOT use meta_info as model input during the inference.**
 
 
 #### 1. Requirements
