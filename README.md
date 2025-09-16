@@ -76,7 +76,7 @@ AdsQA is the **first large-scale benchmark** targeting advertisement video under
 
 According to the Terms of Use of the data source, we cannot store or redistribute the original video files. Instead, we provide open-source access to the video URLs. Please follow these steps to acquire the video data:
 
-   - Obtain the complete list of video URLs from [this link](insert_url_link_here). The file contains URLs for both the training and test set videos.
+   - Obtain the complete list of video URLs from [this link](https://huggingface.co/datasets/TsinghuaC3I/AdsQA/blob/main/video_urls.json). The file contains URLs for both the training and test set videos.
    - Use our provided script `preprocess/download_videos.py` to download all videos.
    - Example usage:
      ```bash
