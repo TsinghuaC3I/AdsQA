@@ -68,9 +68,9 @@ AdsQA is the **first large-scale benchmark** targeting advertisement video under
 
 
 
-## Get Start
+# Get Start
 
-### Data Acquisition
+## Data Acquisition
 
 #### 1. Video Data Acquisition
 
@@ -89,9 +89,19 @@ According to our Terms of Use, we cannot store or redistribute the original vide
      ```
 
 3. **Video Preprocessing** (Optional):
-   - For our ReAd-R model, we preprocessed videos using `preprocess/transform_parquet.py`
+   - For our ReAd-R model, we preprocessed videos using `video_clip.py` and `preprocess/transform_parquet.py`
    - Preprocessed files are available for convenience at [this link](insert_preprocessed_link_here)
-   - Note: You may customize preprocessing (e.g., different sampling rates, resolutions) based on your specific requirements
+   - Note: You may customize preprocessing (e.g., different sampling rates, resolutions) based on your specific requirements.
+  
+   ```
+cd preprocess
+python video_clip.py
+```
+transform_parquet.py converts the dataset into Parquet format for training.
+```
+cd preprocess
+python transform_parquet.py
+```
 
 #### 2. Question and Annotation Data Acquisition
 
@@ -103,6 +113,7 @@ Download the following annotation files from [this link](insert_annotation_link_
 
 **Important Usage Note: The meta_info field is only for model-based auto evaluation purposes, DO NOT use meta_info as model input during the inference.**
 
+## Training, Inference, and Evaluation
 
 #### 1. Requirements
 We use the **[EasyR1](https://github.com/hiyouga/EasyR1)** framework for reinforcement learning (RL) training.
@@ -115,46 +126,25 @@ cd ReadR
 pip install -e .
 ```
 
+#### 2. Train
 
+We provide the training code for ReAd-R. Please use the following script to run the training code.
 
-#### 2. Datasets and Checkpoints.
+~~~
+bash examples/adsqa.sh
+~~~
 
-##### Datasets:
-video_clip.py converts a video into multiple images.
-```
-cd preprocess
-python video_clip.py
-```
-transform_parquet.py converts the dataset into Parquet format for training.
-```
-cd preprocess
-python transform_parquet.py
-```
-
-##### Checkpoint:
-
-The Official Released Models:
-
-|  Model  |                       LINK                       |
-| :-----: | :----------------------------------------------: |
-| Qwen-VL |   [Link](https://github.com/QwenLM/Qwen2.5-VL)   |
-
-Our fine-tuned version
+Meanwhile, we have released our checkpoint:
 
 |         Model          |                     LINK                     |
 | :--------------------: | :--------------------------------------------------: |
 |  Qwen2.5-7B-VL-ReAd-R  | 🤗[Huggingface](https://huggingface.co/TsinghuaC3I/Qwen2.5-7B-VL-ReAd-R) |
 
 
+#### 3. Inference
 
 
-
-#### 3. Train
-
-~~~
-bash examples/adsqa.sh
-~~~
-
+#### 4. Evaluation
 
 
 ## Contact
