@@ -76,27 +76,26 @@ AdsQA is the **first large-scale benchmark** targeting advertisement video under
 
 According to our Terms of Use, we cannot store or redistribute the original video files. Instead, we provide open-source access to the video URLs. Please follow these steps to acquire the video data:
 
- **Download Video URLs**: 
    - Obtain the complete list of video URLs from [this link](insert_url_link_here). The file contains URLs for both the training and test set videos
-   - If any videos are inaccessible or the URLs have expired, please feel free to open an issue or contact us directly via email.
-     
- **Download Videos**:
    - Use our provided script `preprocess/download_videos.py` to download all videos
    - Example usage:
      ```bash
      python preprocess/download_videos.py --url_file [path_to_url_file] --output_dir [video_output_directory]
      ```
-
+     
+   ** If any videos are inaccessible or the URLs have expired, please feel free to open an issue or contact us directly via email. **
+   
  **Video Preprocessing** (Optional):
    - For our ReAd-R model, we preprocessed videos using `video_clip.py` and `preprocess/transform_parquet.py`
    - Preprocessed files are available for convenience at [this link](insert_preprocessed_link_here)
-   - Note: You may customize preprocessing (e.g., different sampling rates, resolutions) based on your specific requirements.
-     
-    ```bash
+   - Example usage:
+   ```bash
     cd preprocess
     python video_clip.py # 
     python transform_parquet.py # converts the dataset into Parquet format for training.
     ```
+   - Note: You may customize preprocessing (e.g., different sampling rates, resolutions) based on your specific requirements.
+
 
 #### 2. Question and Annotation Data Acquisition
 
