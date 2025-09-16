@@ -92,16 +92,11 @@ According to our Terms of Use, we cannot store or redistribute the original vide
    - For our ReAd-R model, we preprocessed videos using `video_clip.py` and `preprocess/transform_parquet.py`
    - Preprocessed files are available for convenience at [this link](insert_preprocessed_link_here)
    - Note: You may customize preprocessing (e.g., different sampling rates, resolutions) based on your specific requirements.
-  
-   ```
-cd preprocess
-python video_clip.py
-```
-transform_parquet.py converts the dataset into Parquet format for training.
-```
-cd preprocess
-python transform_parquet.py
-```
+    ```bash
+    cd preprocess
+    python video_clip.py # 
+    python transform_parquet.py # converts the dataset into Parquet format for training.
+    ```
 
 #### 2. Question and Annotation Data Acquisition
 
@@ -118,7 +113,7 @@ Download the following annotation files from [this link](insert_annotation_link_
 #### 1. Requirements
 We use the **[EasyR1](https://github.com/hiyouga/EasyR1)** framework for reinforcement learning (RL) training.
 
-```
+```bash
 conda create -n ReadR python=3.10
 conda activate ReadR
 
