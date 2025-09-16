@@ -94,7 +94,7 @@ According to our Terms of Use, we cannot store or redistribute the original vide
     cd preprocess
     python video_clip.py # 
     python transform_parquet.py # converts the dataset into Parquet format for training.
-    ```
+   ```
 
 #### 2. Question and Annotation Data Acquisition
 
