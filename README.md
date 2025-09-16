@@ -87,14 +87,15 @@ According to our Terms of Use, we cannot store or redistribute the original vide
    
  **Video Preprocessing** (Optional):
    - For our ReAd-R model, we preprocessed videos using `video_clip.py` and `preprocess/transform_parquet.py`
-   - Preprocessed files are available for convenience at [this link](insert_preprocessed_link_here)
-   - Note: You may customize preprocessing (e.g., different sampling rates, resolutions) based on your specific requirements.
    - Example usage:
    ```bash
     cd preprocess
     python video_clip.py # 
     python transform_parquet.py # converts the dataset into Parquet format for training.
    ```
+   - Preprocessed files are available for convenience at [this link](insert_preprocessed_link_here)
+   - Note: You may customize preprocessing (e.g., different sampling rates, resolutions) based on your specific requirements.
+
 
 #### 2. Question and Annotation Data Acquisition
 
@@ -151,10 +152,13 @@ tk23@mails.tsinghua.edu.cn
 ## Citation
 If you find our dataset, code, or model useful in your research, please consider citing our work:
 ```
-@article{yourpaper2024readr,
-  title={ReAd-R: Reinforced Reading with Reasoning for Video Question Answering},
-  author={Author1, Author2, Author3, and Author4},
-  journal={Conference on Neural Information Processing Systems (NeurIPS)},
-  year={2024}
+@misc{long2025adsqaadvertisementvideounderstanding,
+      title={AdsQA: Towards Advertisement Video Understanding}, 
+      author={Xinwei Long and Kai Tian and Peng Xu and Guoli Jia and Jingxuan Li and Sa Yang and Yihua Shao and Kaiyan Zhang and Che Jiang and Hao Xu and Yang Liu and Jiaheng Ma and Bowen Zhou},
+      year={2025},
+      eprint={2509.08621},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2509.08621}, 
 }
 ```
