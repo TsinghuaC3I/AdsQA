@@ -76,19 +76,18 @@ AdsQA is the **first large-scale benchmark** targeting advertisement video under
 
 According to our Terms of Use, we cannot store or redistribute the original video files. Instead, we provide open-source access to the video URLs. Please follow these steps to acquire the video data:
 
-1. **Download Video URLs**: 
-   - Obtain the complete list of video URLs from [this link](insert_url_link_here)
-   - The file contains URLs for both the training and test set videos
+ **Download Video URLs**: 
+   - Obtain the complete list of video URLs from [this link](insert_url_link_here). The file contains URLs for both the training and test set videos
    - If any videos are inaccessible or the URLs have expired, please feel free to open an issue or contact us directly via email.
      
-2. **Download Videos**:
+ **Download Videos**:
    - Use our provided script `preprocess/download_videos.py` to download all videos
    - Example usage:
      ```bash
      python preprocess/download_videos.py --url_file [path_to_url_file] --output_dir [video_output_directory]
      ```
 
-3. **Video Preprocessing** (Optional):
+ **Video Preprocessing** (Optional):
    - For our ReAd-R model, we preprocessed videos using `video_clip.py` and `preprocess/transform_parquet.py`
    - Preprocessed files are available for convenience at [this link](insert_preprocessed_link_here)
    - Note: You may customize preprocessing (e.g., different sampling rates, resolutions) based on your specific requirements.
@@ -150,5 +149,13 @@ longxw22@mails.tsinghua.edu.cn
 
 tk23@mails.tsinghua.edu.cn
 
-
-
+## Citation
+If you find our dataset, code, or model useful in your research, please consider citing our work:
+```
+@article{yourpaper2024readr,
+  title={ReAd-R: Reinforced Reading with Reasoning for Video Question Answering},
+  author={Author1, Author2, Author3, and Author4},
+  journal={Conference on Neural Information Processing Systems (NeurIPS)},
+  year={2024}
+}
+```
