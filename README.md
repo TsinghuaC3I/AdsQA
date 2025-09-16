@@ -86,7 +86,7 @@ According to the Terms of Use of the data source, we cannot store or redistribut
    **If any videos are inaccessible or the URLs have expired, please feel free to open an issue or contact us directly via email.**
    
 #### 2. Video Preprocessing (Optional):
-   - For our ReAd-R model, we preprocessed videos using `video_clip.py` and `preprocess/transform_parquet.py`. Preprocessed files are also available for convenience at [this link](insert_preprocessed_link_here).
+   - For our ReAd-R model, we preprocessed videos using `video_clip.py` and `preprocess/transform_parquet.py`. Preprocessed files are also available for convenience at [this link](https://huggingface.co/datasets/TsinghuaC3I/AdsQA/tree/main/processed_videos).
    - Example usage:
      ```bash
      cd preprocess
@@ -98,7 +98,7 @@ According to the Terms of Use of the data source, we cannot store or redistribut
 
 #### 3. Question and Annotation Data Acquisition
 
-Download the following annotation files from [this link](insert_annotation_link_here):
+Download the following annotation files from [this link](https://huggingface.co/datasets/TsinghuaC3I/AdsQA/tree/main):
 
 - `train.json` - Training set questions and annotations
 - `testset_question.json` - Test set (ids, videos, and questions) for inference
