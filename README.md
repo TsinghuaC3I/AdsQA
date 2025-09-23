@@ -151,13 +151,10 @@ tk23@mails.tsinghua.edu.cn
 ## Citation
 If you find our dataset, code, or model useful in your research, please consider citing our work:
 ```
-@misc{long2025adsqaadvertisementvideounderstanding,
-      title={AdsQA: Towards Advertisement Video Understanding}, 
-      author={Xinwei Long and Kai Tian and Peng Xu and Guoli Jia and Jingxuan Li and Sa Yang and Yihua Shao and Kaiyan Zhang and Che Jiang and Hao Xu and Yang Liu and Jiaheng Ma and Bowen Zhou},
-      year={2025},
-      eprint={2509.08621},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2509.08621}, 
+@InProceedings{adsqa_2025_ICCV,
+    author    = {Long, Xinwei and Tian, Kai and Xu, Peng and Jia, Guoli and Li, Jingxuan and Yang, Sa and Shao, Yihua and Zhang, Kaiyan and Jiang, Che and Xu, Hao and Liu, Yang and Ma, Jiaheng and Zhou, Bowen},
+    title     = {AdsQA: Towards Advertisement Video Understanding},
+    booktitle = {ICCV},
+    year      = {2025}
 }
 ```
