@@ -5,6 +5,9 @@
 
 *Keyworks: Advertisement Videos, VideoQA, Multimodal Reasoning, GRPO*
 
+🎉 This work has been accepted by ICCV 2025.  
+:triangular_flag_on_post: Its arXiv version is available at [https://arxiv.org/abs/2509.08621](https://arxiv.org/abs/2509.08621) ![](https://img.shields.io/badge/abs-2025.09-red).
+
 ---
 
   Xinwei Long<sup>1*</sup>, Kai Tian<sup>1*</sup>, Peng Xu<sup>1</sup>, Guoli Jia<sup>1</sup>, Jingxuan Li<sup>2</sup>, Sa Yang<sup>3</sup>, Yihua Shao<sup>4</sup>, Kaiyan Zhang<sup>1</sup>,Che Jiang<sup>1</sup>, Hao Xu<sup>5</sup>, Yang Liu<sup>2</sup>, Jiaheng Ma<sup>2</sup>,
@@ -36,6 +39,14 @@ AdsQA is the **first large-scale benchmark** targeting advertisement video under
 - **📦 What’s AdsQA?** A benchmark built on 1,544 ad videos and 10,962 clips totaling 22.7 hours, annotated via a novel multi-agent pipeline.
 - **🚀 Our Model: ReAd-R** is a Reinforced Ad Reasoner trained using reward-based optimization, outperforming chain-of-thought and agent-based methods.
 - **🎯 5 Tasks**: Visual Concepts, Emotion, Themes, Persuasion, and Audience.
+
+---
+
+🔥 AdsQA is used as the test set of [ICCV 2025 MARS2 multimodal reasoning challenge](https://mars2workshop.github.io/iccv2025/). 
+
+💥 See the MARS2 official report at [https://arxiv.org/abs/2509.14142](https://arxiv.org/abs/2509.14142) ![](https://img.shields.io/badge/abs-2025.09-red).
+
+---
 
 <img align="center" src="./assets/Figure 1.png" >
 
@@ -148,13 +159,23 @@ longxw22@mails.tsinghua.edu.cn
 
 tk23@mails.tsinghua.edu.cn
 
-## Citation
-If you find our dataset, code, or model useful in your research, please consider citing our work:
-```
-@InProceedings{adsqa_2025_ICCV,
-    author    = {Long, Xinwei and Tian, Kai and Xu, Peng and Jia, Guoli and Li, Jingxuan and Yang, Sa and Shao, Yihua and Zhang, Kaiyan and Jiang, Che and Xu, Hao and Liu, Yang and Ma, Jiaheng and Zhou, Bowen},
-    title     = {AdsQA: Towards Advertisement Video Understanding},
-    booktitle = {ICCV},
+## :star: Citation
+If you find our dataset, code, or model useful in your research, please consider citing our paper and MARS2 Workshop:
+
+    ```
+    @inproceedings{long2025adsqa,
+        author    = {Long, Xinwei and Tian, Kai and Xu, Peng and Jia, Guoli and Li, Jingxuan and Yang, Sa and Shao, Yihua and Zhang, Kaiyan and Jiang, Che and Xu, Hao and Liu, Yang and Ma, Jiaheng and Zhou, Bowen},
+        title     = {AdsQA: Towards Advertisement Video Understanding},
+        booktitle = {ICCV},
+        year      = {2025}
+    }
+    ```
+    
+    ```
+    @inproceedings{xu2025mars2,
+    author    = {Xu, Peng and Xiong, Shengwu and Zhang, Jiajun and Chen, Yaxiong and Zhou, Bowen and Loy, Chen Change and Clifton, David and Lee, Kyoung Mu and Van Gool, Luc and others},
+    title     = {MARS2 2025 Challenge on Multimodal Reasoning: Datasets, Methods, Results, Discussion, and Outlook},
+    booktitle = {ICCV Workshop},
     year      = {2025}
-}
-```
+    }
+    ```
