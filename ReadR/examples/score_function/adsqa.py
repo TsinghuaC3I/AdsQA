@@ -75,7 +75,9 @@ def find_data_by_solution(data, solution):
 def generate_qwen(answer,golden):
     answer_math = re.search(r'<answer>(.*?)</answer>', answer)
     answer = answer_math.group(1).strip() if answer_math else answer.strip()
-    data=load_jsonl_file("data/adv/trainset.jsonl")
+    if len(answer.split()) > 30:
+        answer = ' '.join(answer.split()[0:30])
+    data=load_jsonl_file("data/trainset.jsonl")
     item=find_data_by_solution(data=data,solution=golden)
 
     prompt1=prompt.format(meta_info=item["meta_info"],question=item.get("problem"),golden_answer=golden,response=answer)
@@ -135,9 +137,9 @@ def accuracy_reward(predict_str: str, ground_truth: str) -> float:
         number = match.group(1)
         # “1” ⇒ 满分；“0.5” ⇒ 半分
         if number == "1":
-            reward = 0.1 if len(only_answer) > 100 * len(ground_truth) else 1.0
+            reward = 0.1 if len(only_answer) > 5 * len(ground_truth) else 1.0
         elif number == "0.5":
-            reward = 0.1 if len(only_answer) > 100 * len(ground_truth) else 0.5
+            reward = 0.1 if len(only_answer) > 5 * len(ground_truth) else 0.5
 
     return reward
 
@@ -152,19 +154,64 @@ def compute_score(predict_str: str, ground_truth: str, format_weight: float = 0.
         "accuracy": accuracy_score,
     }
 
+def test(golden: str, answer: str, label: str = ""):
+    try:
+        print(f"\n[TEST][{label}]  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        model_output, cleaned_answer = generate_qwen(answer=answer, golden=golden)
+        print(f"[golden]           {golden[:100]}{'...' if len(golden) > 100 else ''}")
+        print(f"[answer-cleaned]   {cleaned_answer}")
+        print(f"[model-output]     {model_output}")
+
+        # 可选：顺便跑一下评分（使用同一 ground_truth）
+        try:
+            sc = compute_score(predict_str=answer, ground_truth=golden)
+            print(f"[scores]           overall={sc['overall']:.3f}, "
+                  f"format={sc['format']:.3f}, accuracy={sc['accuracy']:.3f}")
+        except Exception as _e_sc:
+            print(f"[scores][WARN] compute_score 计算失败：{_e_sc}")
+        print(f"[TEST][{label}]  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n")
+        return model_output, cleaned_answer
+    except Exception as e:
+        print(f"[TEST][{label}][ERROR] {e}")
+        raise
+
+
+# ===================== 重写 __main__：构造并跑一组覆盖性用例 =====================
 if __name__ == "__main__":
-    # 如果真正的 generate_qwen 不可用，就用一个最简替代实现
-    # try:
-    #     generate_qwen
-    # except NameError:
-    #     def generate_qwen(pred_str: str, ground_truth: str):
-    #         # mock: 始终返回正确答案
-    #         return ("Answer: 1", "1")
+    # 1) 先加载训练集，挑一条样本，拿到可用的 golden（即 item['solution']）
+    jsonl_path = "data/trainset.jsonl"
+    dataset = load_jsonl_file(jsonl_path)
+    if not dataset:
+        raise RuntimeError(f"数据为空或无法读取：{jsonl_path}")
 
-    # 示例预测字符串 & 参考答案
-    prediction = "<think>some reasoning...</think><answer> Through entertaining content that avoids traditional ads.</answer>"
-    gold = "Through entertaining content that avoids traditional ads."
+    # 选一条满足必要字段的样本
+    sample = None
+    for it in dataset:
+        if "solution" in it and "meta_info" in it and "problem" in it:
+            sample = it
+            break
+    if sample is None:
+        raise KeyError("数据集中找不到同时包含 'solution'、'meta_info'、'problem' 的样本。")
 
-    print("format_reward  :", format_reward(prediction))
-    print("accuracy_reward:", accuracy_reward(prediction, gold))
-    print("compute_score  :", compute_score(prediction, gold))
+    golden0 = sample["solution"]              # 注意：generate_qwen 里用 solution 当 golden 查找与判定
+    golden_tokens = golden0.split()
+    half_n = max(1, len(golden_tokens) // 2)
+
+    # 2) 构造四类测试用例（全部都会真实调 generate_qwen）
+    # A. 完全匹配：直接把 golden 包在 <answer> 标签里
+    ans_match = f"<answer>{golden0}</answer>"
+
+    # B. 部分匹配：取 golden 的前半部分，制造“0.5”的可能性
+    ans_partial = "<answer>" + " ".join(golden_tokens[:half_n]) + "</answer>"
+
+    # C. 明显不匹配：与广告无关或含矛盾语句
+    ans_mismatch = "<answer>This answer is unrelated to the ad and contradicts the provided meta information.</answer>"
+
+    # D. 超长噪声：测试你在 generate_qwen 里的“30 词截断”是否生效
+    long_noise = "<answer>" + " ".join(golden_tokens + ["noise"] * 120) + "</answer>"
+
+    print("====== Run tests for generate_qwen() ======")
+    test(golden=golden0, answer=ans_match,   label="MATCH_EXPECT_1")
+    test(golden=golden0, answer=ans_partial, label="PARTIAL_EXPECT_0.5")
+    test(golden=golden0, answer=ans_mismatch,label="MISMATCH_EXPECT_0")
+    test(golden=golden0, answer=long_noise,  label="LONG_ANSWER_TRUNCATION")
