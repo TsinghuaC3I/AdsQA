@@ -147,7 +147,7 @@ Meanwhile, we have released our checkpoint (**Model files re-uploaded on 2025-10
 
 #### 3. Inference
 
-We provide inference scripts in the evaluation directory. For the inference process, we utilize the results of Automatic Speech Recognition (ASR) as features. The ASR results, which are also provided in the same directory, were obtained using Whisper and subsequently translated into English by GPT-4o.
+We provide inference scripts in the `evaluation` directory. For the inference process, we utilize the results of Automatic Speech Recognition (ASR) as features. The ASR results, which are also provided in the same directory, were obtained using Whisper and subsequently translated into English by GPT-4o.
 
 #### 4. Evaluation
 
