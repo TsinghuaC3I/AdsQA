@@ -138,7 +138,7 @@ We provide the training code for ReAd-R. Please use the following script to run 
 bash examples/adsqa.sh
 ~~~
 
-Meanwhile, we have released our checkpoint:
+Meanwhile, we have released our checkpoint (Model files re-uploaded on 2025-10-22):
 
 |         Model          |                     LINK                     |
 | :--------------------: | :--------------------------------------------------: |
@@ -150,6 +150,7 @@ Meanwhile, we have released our checkpoint:
 
 #### 4. Evaluation
 
+We use GPT-4o as the judge model. Please refer to our `./evaluation/model_evaluation.py` script to score the prediction results. In this file, you will need to specify the prediction file name, directory, and your GPT-4o API key and base URL.
 
 ## Contact
 
