@@ -138,7 +138,7 @@ We provide the training code for ReAd-R. Please use the following script to run 
 bash examples/adsqa.sh
 ~~~
 
-Meanwhile, we have released our checkpoint (**Model files re-uploaded on 2025-10-22**):
+Meanwhile, we have released our checkpoint (**!!! 🔥 Model files re-uploaded on 2025-10-22**):
 
 |         Model          |                     LINK                     |
 | :--------------------: | :--------------------------------------------------: |
