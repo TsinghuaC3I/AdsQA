@@ -147,11 +147,27 @@ Meanwhile, we have released our checkpoint (**Model files re-uploaded on 2025-10
 
 #### 3. Inference
 
-We provide inference scripts in the `evaluation` directory. For the inference process, we utilize the results of Automatic Speech Recognition (ASR) as features. The ASR results, which are also provided in the same directory, were obtained using Whisper and subsequently translated into English by GPT-4o.
+We provide inference scripts in the `evaluation` directory. During inference, we use Automatic Speech Recognition (ASR) results as input features. The corresponding ASR data (`asr_set.json`) is also included in the same directory. The ASR transcripts were generated using Whisper and then translated into English via GPT-4o. For visual processing, we extract frames at 1 FPS (with a maximum of 32 frames) and use the default max_pixel setting from Qwen2.5-VL.
 
+This script will create a directory for each question (named with its question_id), inside which the prediction result from each model will be saved using the given model name (See examples in `./evaluation/results`). Please use the following script to run the inference code.
+
+~~~
+# for GRPO model inference
+python evaluation/eval_adQA.py --video_dir your_video_path --file_dir test_file_dir --model_dir test_model_save_path --model_name your_model_name
+# for Qwen2.5-VL model inference
+python evaluation/eval_adQA_qwen2d5-7b.py --video_dir your_video_path --file_dir test_file_dir --model_dir test_model_save_path --model_name your_model_name
+~~~
 #### 4. Evaluation
 
-We use GPT-4o as the judge model. Please refer to our `./evaluation/model_evaluation.py` script to score the prediction results. In this file, you will need to specify the prediction file name, directory, and your GPT-4o API key and base URL.
+We use GPT-4o as the judge model. Please refer to our `./evaluation/model_evaluation.py` script to score the prediction results. In this file, you will need to specify the prediction file name, directory, and your GPT-4o API key and base URL. 
+The model-based evaluation results will be saved to the `score` field in the prediction file.
+
+Please use the following script to run the model-based evaluation code.
+
+~~~
+# for GRPO model inference
+python evaluation/model_evaluation.py --eval_name prediction_file_name --test_file groundtruth_file --results_dir dir_you_save_prediction_files --api_key your_api_key --api_base your_api_url_base
+~~~
 
 ## Contact
 
