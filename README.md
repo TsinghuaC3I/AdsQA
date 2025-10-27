@@ -165,7 +165,7 @@ The model-based evaluation results will be saved to the `score` field in the pre
 Please use the following script to run the model-based evaluation code.
 
 ~~~
-# for GRPO model inference
+# for model-based inference
 python evaluation/model_evaluation.py --eval_name prediction_file_name --test_file groundtruth_file --results_dir dir_you_save_prediction_files --api_key your_api_key --api_base your_api_url_base
 ~~~
 
