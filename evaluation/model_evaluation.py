@@ -148,8 +148,10 @@ if __name__ == '__main__':
                         relax_acc_counts[typee] += 1
                     continue # the sample has been evaluated before
 
+            
             pred_answer = pred_item[0]['prediction']
-
+            if "<answer>" in pred_answer:
+                pred_answer = re.sub(r'(?s).*<answer>\s*(.*?)\s*</answer>.*', r'\1', pred_answer)            
             if len(pred_answer.split()) > 30:
                 pred_answer = ' '.join(pred_answer.split()[0:30])
 
